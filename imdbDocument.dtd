@@ -1,0 +1,43 @@
+<!ELEMENT imdbdocument ( rating, rating_count, year, genres, rated, title, imdb_url, directors, writers, actors, plot_simple, type, poster, imdb_id, also_known_as, language, country, release_date, filming_locations, runtime ) >
+
+<!ELEMENT item ( #PCDATA ) >
+
+<!ELEMENT rating ( #PCDATA ) >
+
+<!ELEMENT rating_count ( #PCDATA ) >
+
+<!ELEMENT year ( #PCDATA ) >
+
+<!ELEMENT genres ( item+ ) >
+
+<!ELEMENT rated ( #PCDATA ) >
+
+<!ELEMENT title ( #PCDATA ) >
+
+<!ELEMENT imdb_url ( #PCDATA ) >
+
+<!ELEMENT directors ( item+ ) >
+
+<!ELEMENT writers ( item+ ) >
+
+<!ELEMENT actors ( item+ ) >
+
+<!ELEMENT plot_simple ( #PCDATA ) >
+
+<!ELEMENT type ( #PCDATA ) >
+
+<!ELEMENT poster ( #PCDATA ) >
+
+<!ELEMENT imdb_id ( #PCDATA ) >
+
+<!ELEMENT also_known_as ( item+ ) >
+
+<!ELEMENT language ( item+ ) >
+
+<!ELEMENT country ( item+ ) >
+
+<!ELEMENT release_date ( #PCDATA ) >
+
+<!ELEMENT filming_locations ( #PCDATA ) >
+
+<!ELEMENT runtime ( item+ ) >
