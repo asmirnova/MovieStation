@@ -19,9 +19,15 @@ import org.xml.sax.SAXParseException;
 public abstract class ImdbValidator {
 
     protected final DocumentBuilder documentBuilder;
+    protected final String pathToSchema;
 
     public ImdbValidator() {
+        this(null);
+    }
+    
+    public ImdbValidator(String pathToSchema) {
         this.documentBuilder = tryCreateDocumentBuilder();
+        this.pathToSchema = pathToSchema;
     }
 
     public abstract Document validate(String responseToValidate) throws MovieException;

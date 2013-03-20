@@ -3,12 +3,9 @@ package com.movie.xml.validator;
 import com.movie.errors.ErrorMessages;
 import com.movie.errors.InvalidImdbDocumentException;
 import com.movie.errors.MovieException;
-import com.movie.xml.parser.ImdbXmlParser;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -30,7 +27,11 @@ public class DtdImdbValidator extends ImdbValidator {
     private final static String ID_IMDB_DOC_DTD = "imdbDocument.dtd";
 
     public DtdImdbValidator() {
-        super();
+        super(ID_IMDB_DOC_DTD);
+    }
+    
+    public DtdImdbValidator(String pathToDtdSchema){
+        super(pathToDtdSchema);
     }
 
     @Override
@@ -40,7 +41,7 @@ public class DtdImdbValidator extends ImdbValidator {
             //add the DTD element
             Transformer transformer = TransformerFactory.newInstance().newTransformer();
             
-            transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, ID_IMDB_DOC_DTD);
+            transformer.setOutputProperty(OutputKeys.DOCTYPE_SYSTEM, pathToSchema);
             Writer stream = new StringWriter();
             transformer.transform(new StreamSource(IOUtils.toInputStream(responseToValidate)), new StreamResult(stream));
 
