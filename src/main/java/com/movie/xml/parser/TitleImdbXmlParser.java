@@ -1,8 +1,5 @@
 package com.movie.xml.parser;
 
-import com.movie.xml.parser.ImdbXmlParser;
-import com.movie.xml.parser.IdImdbXmlParser;
-import com.movie.xml.validator.DtdImdbValidator;
 import com.movie.jaxb.document.IdImdbDocument;
 import java.util.ArrayList;
 import java.util.List;
