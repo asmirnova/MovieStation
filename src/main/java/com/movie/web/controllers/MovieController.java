@@ -24,7 +24,6 @@ public class MovieController {
     private final static int FIRST_PAGE = 1;
     private final static int DEFAULT_MAX_PER_PAGE = 5;
     private final static int MAX_PER_PAGE = 50;
-    
     @Autowired
     private MovieService movieService;
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -37,12 +36,14 @@ public class MovieController {
     @RequestMapping(value = "/movies/{numPage}/{max}", method = RequestMethod.GET)
     public String getMoviesForPage(@PathVariable("numPage") Integer page,
             @PathVariable("max") Integer maxPerPage, Model model) {
+        if (maxPerPage > MAX_PER_PAGE) {
+            maxPerPage = MAX_PER_PAGE;
+        }
         return processMoviesListRequest(maxPerPage, page, model);
     }
 
     @RequestMapping(value = "/movie/{id}", method = RequestMethod.GET)
     public String getMovieData(@PathVariable("id") Integer movieId, Model model) {
-        System.out.println("Searching for film with id " + movieId);
         Movie movie = movieService.findById(movieId);
         if (movie == null) {
             logger.warn("No movie found for id " + movieId);
