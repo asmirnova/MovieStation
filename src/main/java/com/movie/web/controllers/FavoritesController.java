@@ -35,7 +35,6 @@ public class FavoritesController {
     public String addMovieToFavorites(@PathVariable("movieId") int movieId,
             HttpServletRequest request) {
         String referer = request.getHeader("Referer");
-        System.out.println("Adding to favorites!");
         User user = userContext.getCurrentUser();
         if (user != null) {
             Movie movie = movieService.findById(movieId);
@@ -54,7 +53,6 @@ public class FavoritesController {
     public String removeMovieFromFavorites(@PathVariable("movieId") int movieId,
             HttpServletRequest request) {
         String referer = request.getHeader("Referer");
-        System.out.println("Removing favorites!");
         User user = userContext.getCurrentUser();
         if (user != null) {
             Movie movie = movieService.findById(movieId);
@@ -74,17 +72,14 @@ public class FavoritesController {
     public boolean hasFavorite(@PathVariable("movieId") int movieId) {
         User user = userContext.getCurrentUser();
         if (user != null) {
-            System.out.println("Has favorite user " + user.getId() + " movieId=" + movieId);
             //TODO temp solution
             List<Movie> movies = userService.getUserFavoriteMovies(user.getId());
             for (Movie movie : movies) {
                 if (movie.getId() == movieId) {
-                    System.out.println("Returning true");
                     return true;
                 }
             }
         }
-        System.out.println("Returning false;");
         return false;
     }
 }
