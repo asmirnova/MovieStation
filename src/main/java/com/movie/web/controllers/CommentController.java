@@ -34,7 +34,6 @@ public class CommentController {
     @ResponseBody
     public CommentData getComments(@PathVariable("movieId") int movieId) {
         CommentData comments = processCommentsRequest(movieId, FIRST_PAGE, DEFAULT_MAX_PER_PAGE);
-        System.out.println("Returning data with comments");
         return comments;
     }
 
