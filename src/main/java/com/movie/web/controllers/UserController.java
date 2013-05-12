@@ -28,7 +28,7 @@ public class UserController {
             HttpServletRequest request, Model model) {
         User foundUser = userService.findById(id);
         if (foundUser == null) {
-            throw new ResourceNotFoundException();
+            throw new ResourceNotFoundException("No such user!");
         } else {
             List<Movie> favorites = userService.getUserFavoriteMovies(id);
             foundUser.setFavorites(favorites);
