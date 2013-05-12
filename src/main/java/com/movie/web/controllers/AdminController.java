@@ -33,12 +33,12 @@ public class AdminController {
     private UserService userService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public String loginGet(Model model) {
+    public String listUsersFirstPage(Model model) {
         return processUsersListRequest(DEFAULT_MAX_PER_PAGE, FIRST_PAGE, model);
     }
 
     @RequestMapping(value = "/users/{numPage}/{max}", method = RequestMethod.GET)
-    public String loginGet(@PathVariable("numPage") Integer page,
+    public String listUsersPerPage(@PathVariable("numPage") Integer page,
             @PathVariable("max") Integer maxPerPage, Model model) {
         return processUsersListRequest(maxPerPage, page, model);
     }
