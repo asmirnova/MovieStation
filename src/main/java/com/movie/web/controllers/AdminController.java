@@ -31,6 +31,7 @@ public class AdminController {
 
     private final static int FIRST_PAGE = 1;
     private final static int DEFAULT_MAX_PER_PAGE = 5;
+    private final static int MAX_PER_PAGE = 50;
     @Autowired
     private UserService userService;
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -43,6 +44,9 @@ public class AdminController {
     @RequestMapping(value = "/users/{numPage}/{max}", method = RequestMethod.GET)
     public String listUsersPerPage(@PathVariable("numPage") Integer page,
             @PathVariable("max") Integer maxPerPage, Model model) {
+        if(maxPerPage > MAX_PER_PAGE) {
+            maxPerPage = MAX_PER_PAGE;
+        }
         return processUsersListRequest(maxPerPage, page, model);
     }
 
