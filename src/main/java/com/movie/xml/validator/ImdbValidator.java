@@ -1,9 +1,6 @@
 package com.movie.xml.validator;
 
 import com.movie.errors.MovieException;
-import com.movie.xml.parser.ImdbXmlParser;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -24,7 +21,7 @@ public abstract class ImdbValidator {
     public ImdbValidator() {
         this(null);
     }
-    
+
     public ImdbValidator(String pathToSchema) {
         this.documentBuilder = tryCreateDocumentBuilder();
         this.pathToSchema = pathToSchema;
@@ -41,8 +38,7 @@ public abstract class ImdbValidator {
             docBuilder = factory.newDocumentBuilder();
             docBuilder.setErrorHandler(new MyErrorHandler());
         } catch (ParserConfigurationException ex) {
-            Logger.getLogger(ImdbXmlParser.class.getName()).log(Level.SEVERE, null, ex);
-            throw new MovieException("Problem initializing DocumentBuilder.", ex);
+            throw new RuntimeException("Problem initializing DocumentBuilder.", ex);
         }
         return docBuilder;
     }

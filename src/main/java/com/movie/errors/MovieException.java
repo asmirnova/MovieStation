@@ -6,7 +6,15 @@ package com.movie.errors;
  */
 public class MovieException extends RuntimeException {
 
-    public MovieException(String message, Throwable e) {
-        super(message, e);
+    private Error error;
+
+    public MovieException(Error error, Throwable e) {
+        super(error.getDescription(), e);
+        this.error = error;
     }
+    
+    public Error getError() {
+        return error;
+    }
+    
 }

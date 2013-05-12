@@ -1,6 +1,6 @@
 package com.movie.xml.validator;
 
-import com.movie.errors.ErrorMessages;
+import com.movie.errors.Error;
 import com.movie.errors.InvalidImdbDocumentException;
 import com.movie.errors.MovieException;
 import com.movie.xml.utils.ResponseUtils;
@@ -43,7 +43,7 @@ public class DtdImdbValidatorTest {
         try {
             validator.validate(resp);
         } catch (InvalidImdbDocumentException ex) {
-            assertTrue("", ex.getMessage().equals(ErrorMessages.INVALID_DOC));
+            assertTrue("", ex.getError().equals(Error.INVALID_DOC));
         }
     }
 
@@ -53,7 +53,7 @@ public class DtdImdbValidatorTest {
         try {
             validator.validate(resp);
         } catch (InvalidImdbDocumentException ex) {
-            assertTrue("", ex.getMessage().equals(ErrorMessages.INVALID_DOC));
+            assertTrue("", ex.getError().equals(Error.INVALID_DOC));
         }
     }
 }

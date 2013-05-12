@@ -1,6 +1,6 @@
 package com.movie.xml.validator;
 
-import com.movie.errors.ErrorMessages;
+import com.movie.errors.Error;
 import com.movie.errors.InvalidImdbDocumentException;
 import com.movie.errors.MovieException;
 import java.io.IOException;
@@ -48,15 +48,15 @@ public class DtdImdbValidator extends ImdbValidator {
             //parse and validate
             doc = documentBuilder.parse(IOUtils.toInputStream(stream.toString()));
         } catch (SAXParseException ex) {
-            throw new InvalidImdbDocumentException(ErrorMessages.INVALID_DOC, ex);
+            throw new InvalidImdbDocumentException(Error.INVALID_DOC, ex);
         } catch (TransformerConfigurationException ex) {
-            throw new MovieException("It is not possible to create a Transformer instance.", ex);
+            throw new RuntimeException("It is not possible to create a Transformer instance.", ex);
         } catch (SAXException ex) {
-            throw new MovieException("Problems during parsing.", ex);
+            throw new RuntimeException("Problems during parsing.", ex);
         } catch (IOException ex) {
-            throw new MovieException("IO error while XML parsing occured.", ex);
+            throw new RuntimeException("IO error while XML parsing occured.", ex);
         } catch (TransformerException ex) {
-            throw new MovieException("Problems during transforming (adding doctype to xml-string).", ex);
+            throw new RuntimeException("Problems during transforming (adding doctype to xml-string).", ex);
         }
         return doc;
     }

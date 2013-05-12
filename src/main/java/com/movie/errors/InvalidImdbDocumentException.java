@@ -6,8 +6,8 @@ package com.movie.errors;
  */
 public class InvalidImdbDocumentException extends MovieException {
     
-    public InvalidImdbDocumentException(String mes, Throwable t){
-        super(mes, t);
+    public InvalidImdbDocumentException(Error error, Throwable t){
+        super(error, t);
     }
     
 }

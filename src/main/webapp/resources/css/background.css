@@ -1,0 +1,28 @@
+body { 
+    background-color: #7ab5d3;
+    padding: 10px;
+}
+
+.mytable {
+    background: white;    
+}
+
+.overstar {
+    position:relative;
+    top:-40px;
+    left:1.5em;
+}
+
+tr {
+    cursor: default;
+}
+
+td {
+    cursor: pointer;
+}
+
+#outer {width: 100%;}
+#middle {width: 100%; text-align: center;}
+#inner {width: 400px; margin-left: auto; margin-right: auto; text-align: left;}
+
+

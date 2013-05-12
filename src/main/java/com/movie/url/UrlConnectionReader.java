@@ -25,9 +25,9 @@ public class UrlConnectionReader {
             }
             return response.toString();
         } catch (MalformedURLException ex) {
-            throw new MovieException("Malformed URL.", ex);
+            throw new RuntimeException("Malformed URL.", ex);
         } catch (IOException ex) {
-            throw new MovieException("Problems creating or reading input stream.", ex);
+            throw new RuntimeException("Problems creating or reading input stream.", ex);
         }
     }
 }
