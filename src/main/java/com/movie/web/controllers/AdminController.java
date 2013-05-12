@@ -8,6 +8,8 @@ import com.movie.web.service.UserService;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +33,7 @@ public class AdminController {
     private final static int DEFAULT_MAX_PER_PAGE = 5;
     @Autowired
     private UserService userService;
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String listUsersFirstPage(Model model) {
@@ -49,7 +52,7 @@ public class AdminController {
         String referer = request.getHeader("Referer");
         User user = userService.findById(userId);
         if (user != null) {
-            System.out.println("Adding admin rights for " + userId);
+            logger.info("Adding admin rights for " + userId);
             userService.addAdminRights(userId);
             return "redirect:" + referer;
         }
@@ -61,8 +64,9 @@ public class AdminController {
     public boolean isAdmin(@PathVariable("userId") int userId) {
         User user = userService.findById(userId);
         if (user != null) {
-            System.out.println("Checking admin rights for " + userId);
-            return userService.isAdmin(userId);
+            final boolean isAdmin = userService.isAdmin(userId);
+            logger.info("Checking admin rights for " + userId+" isAdmin="+isAdmin);
+            return isAdmin;
         }
         throw new ResourceNotFoundException("No such user!");
     }
@@ -73,7 +77,7 @@ public class AdminController {
         String referer = request.getHeader("Referer");
         User user = userService.findById(userId);
         if (user != null) {
-            System.out.println("Removing admin rights for " + userId);
+            logger.info("Removing admin rights for " + userId);
             userService.removeAdminRights(userId);
             return "redirect:" + referer;
         }
@@ -84,32 +88,32 @@ public class AdminController {
     public String removeUser(@PathVariable("userId") int userId) {
         User user = userService.findById(userId);
         if (user != null) {
-            System.out.println("Removing user " + userId);
+            logger.info("Removing user " + userId);
             userService.deleteById(userId);
             return "redirect:/admin/users";
         }
         throw new ResourceNotFoundException("No such user!");
     }
 
-    @RequestMapping(value = "/users/create", method = RequestMethod.POST)
-    public String createUser(@Valid SignupForm signupForm, BindingResult result,
-            RedirectAttributes redirectAttributes, Model model) {
-        User user = UserFiller.fillFromForm(signupForm);
-        if (result.hasErrors()) {
-            model.addAttribute("user", user);
-            model.addAttribute("errors", result.getAllErrors());
-            return "/register";
-        }
-        boolean registered = userService.tryRegister(user);
-        if (registered) {
-            return "redirect:/";
-        } else {
-            model.addAttribute("user", user);
-            result.addError(new ObjectError("username", "Username is already in use."));
-            model.addAttribute("errors", result.getAllErrors());
-            return "register";
-        }
-    }
+//    @RequestMapping(value = "/users/create", method = RequestMethod.POST)
+//    public String createUser(@Valid SignupForm signupForm, BindingResult result,
+//            RedirectAttributes redirectAttributes, Model model) {
+//        User user = UserFiller.fillFromForm(signupForm);
+//        if (result.hasErrors()) {
+//            model.addAttribute("user", user);
+//            model.addAttribute("errors", result.getAllErrors());
+//            return "/register";
+//        }
+//        boolean registered = userService.tryRegister(user);
+//        if (registered) {
+//            return "redirect:/";
+//        } else {
+//            model.addAttribute("user", user);
+//            result.addError(new ObjectError("username", "Username is already in use."));
+//            model.addAttribute("errors", result.getAllErrors());
+//            return "register";
+//        }
+//    }
 
     private String processUsersListRequest(int maxPerPage, int page, Model model) {
         int numberOfPages = userService.getNumberOfUserPages(maxPerPage);
