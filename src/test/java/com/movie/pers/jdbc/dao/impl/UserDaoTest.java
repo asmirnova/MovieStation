@@ -1,13 +1,15 @@
 package com.movie.pers.jdbc.dao.impl;
 
 import com.movie.pers.entities.User;
-import java.util.List;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.ActiveProfiles;
+
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -15,7 +17,7 @@ import static org.junit.Assert.*;
  * @author Aloren
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"file:src/main/resources/web/application-context.xml"})
+@ContextConfiguration(locations = {"file:src/main/webapp/WEB-INF/application-context.xml"})
 @ActiveProfiles("test")
 public class UserDaoTest extends BaseDaoTest {
 
