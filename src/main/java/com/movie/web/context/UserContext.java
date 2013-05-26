@@ -1,4 +1,4 @@
-package com.movie.web.service;
+package com.movie.web.context;
 
 import com.movie.pers.entities.User;
 

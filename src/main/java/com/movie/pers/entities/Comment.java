@@ -89,10 +89,7 @@ public class Comment {
             return false;
         }
         final Comment other = (Comment) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+        return this.id == other.id;
     }
     
     @Override

@@ -14,7 +14,7 @@ public class UrlConnectionReader {
 
     public static String getResponse(ImdbRequestBuilder requestBuilder) throws MovieException {
         try {
-            URL website = new URL(requestBuilder.getRequest().toString());
+            URL website = new URL(requestBuilder.getRequest());
             URLConnection connection = website.openConnection();
             StringBuilder response = new StringBuilder();
             try (BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()))) {

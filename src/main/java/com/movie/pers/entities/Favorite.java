@@ -55,10 +55,7 @@ public class Favorite {
         if (!Objects.equals(this.userId, other.userId)) {
             return false;
         }
-        if (!Objects.equals(this.movie, other.movie)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.movie, other.movie);
     }
     
     @Override

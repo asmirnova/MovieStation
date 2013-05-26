@@ -14,10 +14,10 @@ public class TestData {
 
     public static final Movie testMovie1 = new Movie(1, "Harry Potter", 7.8f, 2006,
             "harry-potter.com", "Blablabla", "poster.url.test",
-            "tt123456", new DateTime(2003, 03, 03, 0, 0).toDate());
+            "tt123456", new DateTime(2003, 3, 3, 0, 0).toDate());
     public static final Movie testMovie2 = new Movie(2, "Tanya Grotter", 6.5f, 2007,
             "tanya-grotter.com", "Blablabla", "poster.tanya.jpg",
-            "tt438674", new DateTime(2005, 07, 25, 0, 0).toDate());
+            "tt438674", new DateTime(2005, 7, 25, 0, 0).toDate());
     
     public static final User testUser1 = new User(1, "Nastya", "Smirnova",
             "aloren", "pass", "email@gmail.com", new DateTime(1991, 9, 20, 0, 0).toDate(), "51575");

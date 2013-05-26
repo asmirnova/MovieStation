@@ -3,20 +3,16 @@ package com.movie.pers.jdbc.dao.impl;
 import com.movie.pers.dao.BaseDao;
 import com.movie.pers.dao.SingleReadDao;
 import com.movie.pers.dao.UpdateDao;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import com.movie.pers.entities.User;
-import java.sql.Date;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.util.List;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+
+import java.sql.*;
+import java.util.List;
 
 /**
  *
@@ -173,7 +169,7 @@ public class UserDao extends JdbcDaoSupport implements BaseDao<User>,
             ps.setString(8, user.getPicUrl());
             return ps;
         }
-    };
+    }
 
     private static class UserMapper implements RowMapper<User> {
 

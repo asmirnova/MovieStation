@@ -138,10 +138,7 @@ public class Movie {
         if (this.year != other.year) {
             return false;
         }
-        if (!Objects.equals(this.imdbId, other.imdbId)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.imdbId, other.imdbId);
     }
 
 //    @Override

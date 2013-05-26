@@ -4,20 +4,15 @@ import com.movie.pers.dao.BaseDao;
 import com.movie.pers.dao.SingleReadDao;
 import com.movie.pers.dao.UpdateDao;
 import com.movie.pers.entities.Movie;
-import com.movie.pers.entities.User;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
+
+import java.sql.*;
+import java.util.List;
 
 /**
  *
@@ -122,7 +117,7 @@ public class MovieDao extends JdbcDaoSupport implements BaseDao<Movie>,
             ps.setDate(8, new Date(movie.getReleaseDate().getTime()));
             return ps;
         }
-    };
+    }
 
     public static class MovieMapper implements RowMapper<Movie> {
 

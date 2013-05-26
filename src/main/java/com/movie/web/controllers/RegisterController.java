@@ -1,20 +1,21 @@
 package com.movie.web.controllers;
 
 import com.movie.pers.entities.User;
+import com.movie.web.context.UserContext;
 import com.movie.web.controllers.utils.UserFiller;
+import com.movie.web.form.SignupForm;
 import com.movie.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import com.movie.web.form.SignupForm;
-import com.movie.web.service.UserContext;
-import javax.validation.Valid;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 /**
  *

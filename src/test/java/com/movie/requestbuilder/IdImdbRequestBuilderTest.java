@@ -6,7 +6,8 @@ import com.movie.xml.types.PlotType;
 import com.movie.xml.types.ReleaseType;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  *
@@ -26,7 +27,7 @@ public class IdImdbRequestBuilderTest {
     public void append() {
         final ReleaseType release = ReleaseType.SIMPLE;
         final PlotType plot = PlotType.FULL;
-        String actual = builder.business(true).plot(plot).release(release).tech(true).getRequest().toString();
+        String actual = builder.business(true).plot(plot).release(release).tech(true).getRequest();
         String expected = ImdbXmlConst.IMDB_API + "id=" + id + "&type=xml&business=1&plot=" + plot.toString() + "&release=" + release.toString()+"&tech=1";
         assertTrue("", expected.equals(actual));
     }

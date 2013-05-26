@@ -1,13 +1,14 @@
 package com.movie.xml.validator;
 
 import com.movie.errors.MovieException;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 /**
  *
@@ -33,7 +34,7 @@ public abstract class ImdbValidator {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         factory.setNamespaceAware(true);
         factory.setValidating(true);
-        DocumentBuilder docBuilder = null;
+        DocumentBuilder docBuilder;
         try {
             docBuilder = factory.newDocumentBuilder();
             docBuilder.setErrorHandler(new MyErrorHandler());

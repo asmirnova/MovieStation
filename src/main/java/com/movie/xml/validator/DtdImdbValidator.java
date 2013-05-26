@@ -3,20 +3,17 @@ package com.movie.xml.validator;
 import com.movie.errors.Error;
 import com.movie.errors.InvalidImdbDocumentException;
 import com.movie.errors.MovieException;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.io.Writer;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.stream.StreamResult;
-import javax.xml.transform.stream.StreamSource;
 import org.apache.commons.io.IOUtils;
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
 import org.xml.sax.SAXParseException;
+
+import javax.xml.transform.*;
+import javax.xml.transform.stream.StreamResult;
+import javax.xml.transform.stream.StreamSource;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.io.Writer;
 
 /**
  *
@@ -36,7 +33,7 @@ public class DtdImdbValidator extends ImdbValidator {
 
     @Override
     public Document validate(String responseToValidate) throws MovieException {
-        Document doc = null;
+        Document doc;
         try {
             //add the DTD element
             Transformer transformer = TransformerFactory.newInstance().newTransformer();

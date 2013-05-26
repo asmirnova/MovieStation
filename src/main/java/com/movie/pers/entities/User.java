@@ -1,11 +1,12 @@
 package com.movie.pers.entities;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
-import org.apache.commons.lang.StringUtils;
 
 /**
  *
@@ -181,9 +182,6 @@ public class User implements Serializable {
         if (!Objects.equals(this.username, other.username)) {
             return false;
         }
-        if (!Objects.equals(this.password, other.password)) {
-            return false;
-        }
-        return true;
+        return Objects.equals(this.password, other.password);
     }
 }

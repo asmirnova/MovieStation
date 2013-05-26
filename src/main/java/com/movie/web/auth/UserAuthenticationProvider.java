@@ -1,10 +1,7 @@
 package com.movie.web.auth;
 
 import com.movie.pers.entities.User;
-import com.movie.web.service.UserContext;
 import com.movie.web.service.UserService;
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -13,6 +10,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import java.util.Collection;
 
 
 public class UserAuthenticationProvider implements AuthenticationProvider {
