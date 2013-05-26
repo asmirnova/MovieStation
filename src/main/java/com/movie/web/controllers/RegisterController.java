@@ -46,7 +46,6 @@ public class RegisterController {
         }
         boolean registered = userService.tryRegister(user);
         if (registered) {
-//            request.getSession().setAttribute("user", user);
             userContext.setCurrentUser(user);
             redirectAttributes.addFlashAttribute("message",
                     "You have successfully signed up and logged in.");
