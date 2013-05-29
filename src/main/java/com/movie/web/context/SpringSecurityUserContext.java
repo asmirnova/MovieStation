@@ -11,22 +11,21 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 import java.util.Collection;
+import javax.validation.constraints.NotNull;
 
 
 @Component
 public class SpringSecurityUserContext implements UserContext {
     
     @Autowired
+    @NotNull
     private AuthorityCreator authorityCreator;
 
     @Override
     public User getCurrentUser() {
         SecurityContext context = SecurityContextHolder.getContext();
         Authentication authentication = context.getAuthentication();
-        System.out.println("Authentication "+authentication);
-        System.out.println("Principal: "+((UsernamePasswordAuthenticationToken)authentication).getPrincipal());
         if (authentication == null) {
-            System.out.println("Returning null");
             return null;
         }
         
@@ -34,10 +33,7 @@ public class SpringSecurityUserContext implements UserContext {
     }
 
     @Override
-    public void setCurrentUser(User user) {
-        if (user == null) {
-            throw new IllegalArgumentException("user cannot be null");
-        }
+    public void setCurrentUser(@NotNull User user) {
         Collection<? extends GrantedAuthority> authorities = authorityCreator.createAuthorities(user);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user,
                 user.getPassword(),authorities);
