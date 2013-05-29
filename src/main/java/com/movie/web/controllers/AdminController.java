@@ -1,6 +1,7 @@
 package com.movie.web.controllers;
 
 import com.movie.errors.ResourceNotFoundException;
+import com.movie.jms.LoggingProducer;
 import com.movie.pers.entities.User;
 import com.movie.web.controllers.utils.UserFiller;
 import com.movie.web.form.SignupForm;
@@ -34,6 +35,8 @@ public class AdminController {
     private final static int MAX_PER_PAGE = 50;
     @Autowired
     private UserService userService;
+    @Autowired
+    private LoggingProducer loggingProducer;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
@@ -53,6 +56,8 @@ public class AdminController {
     @RequestMapping(value = "/users/setAdmin/{userId}", method = RequestMethod.GET)
     public String addAdminRights(@PathVariable("userId") int userId,
             HttpServletRequest request) {
+        System.out.println("Sending message!");
+        loggingProducer.sendMessage("Adding admin rights to "+userId);
         String referer = request.getHeader("Referer");
         User user = userService.findById(userId);
         if (user != null) {

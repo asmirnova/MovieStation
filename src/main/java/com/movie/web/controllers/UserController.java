@@ -1,6 +1,7 @@
 package com.movie.web.controllers;
 
 import com.movie.errors.ResourceNotFoundException;
+import com.movie.jms.LoggingProducer;
 import com.movie.pers.entities.Movie;
 import com.movie.pers.entities.User;
 import com.movie.web.service.UserService;
@@ -22,6 +23,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private LoggingProducer loggingProducer;
 
     @RequestMapping(value = "/profile/user/{id}", method = RequestMethod.GET)
     public String showProfile(@PathVariable("id") Integer id,
@@ -30,11 +33,11 @@ public class UserController {
         if (foundUser == null) {
             throw new ResourceNotFoundException("No such user!");
         } else {
+            loggingProducer.sendMessage("Showing user profile " + id);
             List<Movie> favorites = userService.getUserFavoriteMovies(id);
             foundUser.setFavorites(favorites);
             model.addAttribute("user", foundUser);
         }
         return "profile";
     }
-
 }

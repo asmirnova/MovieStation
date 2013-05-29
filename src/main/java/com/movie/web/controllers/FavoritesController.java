@@ -1,6 +1,7 @@
 package com.movie.web.controllers;
 
 import com.movie.errors.ResourceNotFoundException;
+import com.movie.jms.LoggingProducer;
 import com.movie.pers.entities.Movie;
 import com.movie.pers.entities.User;
 import com.movie.web.context.UserContext;
@@ -30,6 +31,8 @@ public class FavoritesController {
     private UserContext userContext;
     @Autowired
     private MovieService movieService;
+    @Autowired
+    private LoggingProducer loggingProducer;
 
     @RequestMapping(value = "/addToFavorites/{movieId}", method = RequestMethod.GET)
     @PreAuthorize("isAuthenticated()")
@@ -41,6 +44,8 @@ public class FavoritesController {
             Movie movie = movieService.findById(movieId);
             if (movie != null) {
                 userService.addUserFavorite(user.getId(), movie);
+                System.out.println("Sending message!");
+                loggingProducer.sendMessage("Adding favorite. User: "+user.getId()+" Movie: "+movieId);
                 return "redirect:"+referer;
             } else {
                 throw new ResourceNotFoundException("No such film!");
@@ -59,6 +64,7 @@ public class FavoritesController {
             Movie movie = movieService.findById(movieId);
             if (movie != null) {
                 userService.removeUserFavorite(user.getId(), movie);
+                loggingProducer.sendMessage("Removing favorite. User: "+user.getId()+" Movie: "+movieId);
                 return "redirect:"+referer;
             } else {
                 throw new ResourceNotFoundException("No such film!");
