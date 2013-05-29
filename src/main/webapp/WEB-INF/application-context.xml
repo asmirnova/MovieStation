@@ -14,7 +14,8 @@
           http://www.springframework.org/schema/jdbc
 	      http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
 
-    <!-- Scan the codebase for dependency requirements-->
+    <import resource="jms-context.xml"/>
+
     <context:annotation-config />
 
     <bean id="userDao" class="com.movie.pers.jdbc.dao.impl.UserDao"
